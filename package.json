@@ -1,0 +1,20 @@
+{
+  "name": "drone-cd-test",
+  "version": "1.0.0",
+  "description": "This is a repot to test Drone CD tooling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enobt/drone-cd-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enobt/drone-cd-test/issues"
+  },
+  "homepage": "https://github.com/enobt/drone-cd-test#readme"
+}
