@@ -10,7 +10,33 @@ pipeline:
     image: drillster/drone-rsync
     hosts: [ "52.168.73.205" ]
     user: "rvansant"
-    key: cat /home/rvansant/.ssh/id_rsa
+    key: "-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAsEnVGLXLNCTu/Ut5jaBypqEksFRuVcSeo//fbrJ8sek4d1Be
+n9igJgOiCm2uXcwYSyMtpvi0238iG0evfLE4b3diCcRRdbTJ3Q+NdoVjp4xym4fN
+C3HXxaGlIl6jLC/KI0gMGmTQaqB3y8rWDwvE2fYMxeJ/gQYKT7QByR7uj/onviOe
+57xXir0X8Qh5Epm3eLMfG74wxjYU58pgh1WfODg+vRIKFBFjXl5LRMjCh8oq+wW6
+ZOiwLC40CS1m54ZHKmsGQ20wyUug+hnMqbzB3azgzn3o0g5lnxGjDJFK8PBQlUuO
+uoLG42wx07HcOG9UfC7gDCa72pkhte5WM09OcQIDAQABAoIBAQCMuwQw67/CatGW
+x4/L7hBY0T+WvHAwa/ww8+0MU9STupjnNvOzK539etz68kBGhM3H/ddN+jF3IHC7
+0mhXZKqm4WkUXvKgwqh7nxTRTv8VHFvJqYmY31LfZIGNhHtCpQv7SmLPFzgCRwQb
+XluwOzb0wSXFO2GKQKYupobeZaEQsdGlnuHVbjyyWYCLTxekL9oQ0oibko9d8eLm
+xTJidCT5ZRN/oFMc86yTYPPHZnQvbS20IONPL63Vrk0ewWsrMxeBj9B5219qx2rb
+Dw7MiMHJ0ZBGdSxmUW7isL0DWl/Q+m52oxMxrDsLGwVbNyeTsqrMfZHHwSaDP9nB
+S/tIf8ohAoGBANSaUZfja18YpVsqx3v2SaLzwK5fes9sFEiglUr4Lb9243WEqC9t
+5ctTZlS7VI60K+0FBW35P4HDyCXsdSsqxBXy+uPcbleuxddG0joA8HOP3D9e/ZvV
+BqpGPZ4gIGd2V3IbIYZOLiQKeKfe0y8myZindtP03kp625PpWCEPzpA9AoGBANRF
+4kt/+cid+7wB0ywClkuw8//KhqMQjWxyimfGkrHDBiON6FQmTu9A1bIM9g8ZZcoB
+olpME1uTIoGQ3GTlQMZRSXfvrnyIwGFbO4vUnRDX2B3eS25QMe8stp9j5Uf8yH3w
+ma+KTxLxbTMzIzmqJW7MGGvkdUhMhLNI7s9ZVQZFAoGBAME2ngCTxfjexShdcH3Q
+DovxSqMuUsY/Sw/WINfJRIpE2eLrdI3mKnjmipFmzioCxAjcD1sqsfSUoUkV5EYe
+z6XC9RAwPHejdll3G4drYxsjGt7czU7aAvysaUNTnx9oBYDF92m/k19dxNmLQBIS
+BhSd3Pg0CfFWRkfeQSGK5AdhAoGAQXuBcJr8+hdKRdgmRahSpuziiGD4oasEhZTb
+/2FxdWbdKPCo3/SlWwccJP38lfHWxbc1VzeqrRA5j9CZPILANa1zxYzpvb8N4bqc
+JumivkRnhedCS7hvfwHDIG5Xl5pyWu9y6YT4GbbiYe3/itVjEMfjLL1gNLpuIUR5
+bvt20CUCgYAey/5tX8RPkJS1JfIDsIAt7EFPUIK6+FqHzlKbLlkV2ypSZZzlF86N
+yZh0jHHhLJXasF3dNST8reSa7Pb2xtcdBdvWokcx1ZV6q/7OKEmDvftiYnr85L6L
+fZw0sLU2LyRk+kqqjAPisVeGvJsNKw3VoV9QaQCbTEt+6+dx3x/4Hw==
+-----END RSA PRIVATE KEY-----"
     target: /var/www/node-app
     include: [ "./DEPLOY" ]
     exclude: [ "./*.yml", "drone-data", ".*" ]
