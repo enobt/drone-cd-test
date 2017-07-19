@@ -12,9 +12,9 @@ pipeline:
     user: "rvansant"
     key: cat ~/.ssh/id_rsa
     target: /var/www/node-app
-    include: [ "*" ]
-    exclude: [ "*" ]
-    args: "-vvv --timeout=2400 --ignore-errors"
+    include: [ "./LICENSE" ]
+    exclude: [ "./mongo-data" ]
+    args: "--timeout=2400 --ignore-errors"
     script:
       - cd /var/www/node-app
       - git pull
