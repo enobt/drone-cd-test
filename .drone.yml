@@ -1,3 +1,7 @@
+workspace:
+  base: /node-app
+  path: src/github.com/enobt/drone-cd-test
+
 pipeline:
   frontend:
     image: node:8.1
@@ -10,10 +14,10 @@ pipeline:
     image: drillster/drone-rsync
     hosts: [ "52.168.73.205" ]
     user: "rvansant"
-    key: cat ~/.ssh/id_rsa
+    secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
-    include: [ "./DEPLOY" ]
-    exclude: [ "./*.yml", "drone-data", ".*" ]
+    include: [ "./app/index.js", "./app/package.json" ]
+    exclude: [ "./app/test", "./app/node_modules", ".*", "*.yml" ]
     args: "--timeout=2400 --ignore-errors"
     script:
       - cd /var/www/node-app
