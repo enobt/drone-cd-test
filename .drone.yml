@@ -14,7 +14,7 @@ pipeline:
     target: /var/www/node-app
     include: [ "*" ]
     exclude: [ "*" ]
-    args: "--timeout=2400"
+    args: "-vvv --timeout=2400 --ignore-errors"
     script:
       - cd /var/www/node-app
       - git pull
