@@ -17,8 +17,9 @@ pipeline:
     secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
     include: [ "./app/index.js", "./app/package.json" ]
-    exclude: [ "./app/test", "./app/node_modules", ".*" ]
+    exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors"
     script:
       - cd /var/www/node-app
+      - sudo docker-compose build
       - sudo docker-compose up -d
