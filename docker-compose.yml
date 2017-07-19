@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mongo:
+    image: 'mongo:3.4.1'
+    ports:
+      - '27017:27017'
+    volumes:
+      - './mongo-data:/data/db'
+
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    environment:
+      - MONGO_URL=mongo://mongo:27017/meteor
+
+volumes:
+  mongo-data:

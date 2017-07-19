@@ -2,5 +2,19 @@ pipeline:
   frontend:
     image: node:8.1
     commands:
+      - cd app
       - npm install
       - npm test
+
+# pipeline:
+#   deploy:
+#     image: drillster/drone-rsync
+#     hosts: [ "40.71.183.29" ]
+#     user: "rvansant"
+#     key: "-----BEGIN RSA PRIVATE KEY----- ...."
+#     target: /var/www
+#     include: [ "*" ]
+#     exclude: [ "./app/node_modules", "./app/test" ]
+#     script:
+#       - cd /var/www/app
+#       - docker-compose up -d
