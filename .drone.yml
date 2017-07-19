@@ -2,7 +2,6 @@ pipeline:
   frontend:
     image: node:8.1
     commands:
-      - cat /home/rvansant/.ssh/id_rsa
       - cd app
       - npm install
       - npm test
