@@ -12,8 +12,8 @@ pipeline:
     user: "rvansant"
     key: cat ~/.ssh/id_rsa
     target: /var/www/node-app
-    include: [ "./LICENSE" ]
-    exclude: [ "./mongo-data" ]
+    include: [ "./DEPLOY" ]
+    exclude: [ "./*.yml", "drone-data", ".*" ]
     args: "--timeout=2400 --ignore-errors"
     script:
       - cd /var/www/node-app
