@@ -2,7 +2,6 @@ pipeline:
   frontend:
     image: node:8.1
     commands:
-      - pwd
       - cd app
       - npm install
       - npm test
@@ -12,9 +11,10 @@ pipeline:
     hosts: [ "52.168.73.205" ]
     user: "rvansant"
     key: cat ~/.ssh/id_rsa
-    target: /var/www
-    include: [ "*" ]
-    exclude: [ "./app/node_modules", "./app/test" ]
+    target: /var/www/node-app
+    include: [ "" ]
+    exclude: [ "*" ]
     script:
-      - cd /var/www/app
+      - cd /var/www/node-app
+      - git pull
       - docker-compose up -d
