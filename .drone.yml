@@ -2,6 +2,7 @@ pipeline:
   frontend:
     image: node:8.1
     commands:
+      - whoami
       - cd app
       - npm install
       - npm test
