@@ -5,14 +5,16 @@ pipeline:
       - cd app
       - npm install
       - npm test
-    deploy:
-      image: drillster/drone-rsync
-      hosts: [ "52.168.73.205" ]
-      user: "rvansant"
-      key: cat ~/.ssh/id_rsa
-      target: /var/www/node-app
-      include: [ "*" ]
-      exclude: [ "./app/node_modules", "./app/test" ]
-      script:
-        - cd /var/www/node-app
-        - docker-compose up -d
+
+  deploy:
+    image: drillster/drone-rsync
+    hosts: [ "52.168.73.205" ]
+    user: "rvansant"
+    key: cat ~/.ssh/id_rsa
+    target: /var/www/node-app
+    include: [ "" ]
+    exclude: [ "*" ]
+    args: "--timeout=2400"
+    script:
+      - cd /var/www/node-app
+      - docker-compose up -d
