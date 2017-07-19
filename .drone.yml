@@ -17,4 +17,5 @@ pipeline:
     args: "--timeout=2400"
     script:
       - cd /var/www/node-app
+      - git pull
       - docker-compose up -d
