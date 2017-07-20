@@ -3,14 +3,16 @@ workspace:
   path: src/github.com/enobt/drone-cd-test
 
 pipeline:
-  frontend:
+  node_app_production:
     image: node:8.1
     commands:
       - cd app
       - npm install
       - npm test
+  when:
+    branch: master
 
-  deploy:
+  deploy_production:
     image: drillster/drone-rsync
     hosts: [ "52.168.73.205" ]
     user: "rvansant"
@@ -23,3 +25,5 @@ pipeline:
       - cd /var/www/node-app
       - sudo docker-compose build
       - sudo docker-compose up -d
+    when:
+      branch: master
