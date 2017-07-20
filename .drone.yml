@@ -9,8 +9,8 @@ pipeline:
       - cd app
       - npm install
       - npm test
-  when:
-    branch: develop
+    when:
+      branch: develop
 
   node_app_production:
     image: node:8.1
@@ -18,8 +18,8 @@ pipeline:
       - cd app
       - npm install
       - npm test
-  when:
-    branch: master
+    when:
+      branch: master
 
   deploy_staging:
     image: drillster/drone-rsync
