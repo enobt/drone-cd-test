@@ -37,7 +37,7 @@ pipeline:
     when:
       branch: develop
 
-    deploy_production:
+  deploy_production:
     image: drillster/drone-rsync
     hosts: [ "52.168.73.205" ]
     user: "rvansant"
