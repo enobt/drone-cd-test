@@ -29,13 +29,14 @@ pipeline:
     target: /var/www/node-app
     include: [ "./app/index.js", "./app/package.json" ]
     exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
-    args: "--timeout=2400 --ignore-errors"
+    args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
       - sudo docker-compose build
       - sudo docker-compose up -d
     when:
       branch: develop
+      event: [ push ]
 
   deploy_production:
     image: drillster/drone-rsync
@@ -45,10 +46,11 @@ pipeline:
     target: /var/www/node-app
     include: [ "./app/index.js", "./app/package.json" ]
     exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
-    args: "--timeout=2400 --ignore-errors"
+    args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
       - sudo docker-compose build
       - sudo docker-compose up -d
     when:
       branch: master
+      event: [ push ]
