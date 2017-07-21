@@ -39,7 +39,7 @@ pipeline:
 
   deploy_production:
     image: drillster/drone-rsync
-    hosts: [ "52.168.73.205" ]
+    hosts: [ "52.168.94.113" ]
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
