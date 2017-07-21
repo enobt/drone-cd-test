@@ -29,7 +29,7 @@ pipeline:
     target: /var/www/node-app
     include: [ "./app/index.js", "./app/package.json" ]
     exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
-    args: "--timeout=2400 --ignore-errors"
+    args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
       - sudo docker-compose build
@@ -45,7 +45,7 @@ pipeline:
     target: /var/www/node-app
     include: [ "./app/index.js", "./app/package.json" ]
     exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
-    args: "--timeout=2400 --ignore-errors"
+    args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
       - sudo docker-compose build
