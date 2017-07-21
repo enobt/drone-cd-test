@@ -3,16 +3,27 @@ workspace:
   path: src/github.com/enobt/drone-cd-test
 
 pipeline:
-  frontend:
+  node_app_staging:
     image: node:8.1
     commands:
       - cd app
       - npm install
       - npm test
+    when:
+      branch: develop
 
-  deploy:
+  node_app_production:
+    image: node:8.1
+    commands:
+      - cd app
+      - npm install
+      - npm test
+    when:
+      branch: master
+
+  deploy_staging:
     image: drillster/drone-rsync
-    hosts: [ "52.168.73.205" ]
+    hosts: [ "52.168.73.205" ] #change hosts
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
@@ -23,3 +34,21 @@ pipeline:
       - cd /var/www/node-app
       - sudo docker-compose build
       - sudo docker-compose up -d
+    when:
+      branch: develop
+
+  deploy_production:
+    image: drillster/drone-rsync
+    hosts: [ "52.168.94.113" ]
+    user: "rvansant"
+    secrets: [ RSYNC_KEY ]
+    target: /var/www/node-app
+    include: [ "./app/index.js", "./app/package.json" ]
+    exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
+    args: "--timeout=2400 --ignore-errors"
+    script:
+      - cd /var/www/node-app
+      - sudo docker-compose build
+      - sudo docker-compose up -d
+    when:
+      branch: master
