@@ -32,6 +32,7 @@ pipeline:
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/api
+      - sudo docker-compose down api mongo
       - sudo docker-compose build api mongo
       - sudo docker-compose up -d api 
     when:
@@ -49,6 +50,7 @@ pipeline:
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/ui
+      - sudo docker-compose down ui
       - sudo docker-compose build ui
       - sudo docker-compose up -d ui
     when:
