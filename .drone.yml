@@ -3,54 +3,54 @@ workspace:
   path: src/github.com/enobt/drone-cd-test
 
 pipeline:
-  node_app_staging:
+  node_app_backend:
     image: node:8.1
     commands:
       - cd app
       - npm install
-      - npm test
-    when:
-      branch: develop
-
-  node_app_production:
-    image: node:8.1
-    commands:
-      - cd app
-      - npm install
-      - npm test
+      - npm start
     when:
       branch: master
 
-  deploy_staging:
+  node_app_frontend:
+    image: node:8.1
+    commands:
+      - cd ui
+      - npm install
+      - npm start
+    when:
+      branch: master
+
+  deploy_backend:
     image: drillster/drone-rsync
-    hosts: [ "52.168.73.205" ] #change hosts
+    hosts: [ "52.168.149.156" ] #change hosts
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
-    include: [ "./app/index.js", "./app/package.json" ]
-    exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
+    include: [ "./api/bin", "./api/package.json", "./api/public", "./api/routes", "./api/views", "./api/package.json" ]
+    exclude: [ "./api/test", "./api/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
-      - sudo docker-compose build
-      - sudo docker-compose up -d
+      - sudo docker-compose build api
+      - sudo docker-compose up api -d
     when:
-      branch: develop
+      branch: master
       event: [ push ]
 
-  deploy_production:
+  deploy_frontend:
     image: drillster/drone-rsync
-    hosts: [ "52.168.94.113" ]
+    hosts: [ "52.168.146.227" ]
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
     target: /var/www/node-app
-    include: [ "./app/index.js", "./app/package.json" ]
-    exclude: [ "./app/test", "./app/node_modules", ".*", ".drone.yml" ]
+    include: [ "./ui/src", "./ui/package.json", "./ui/public" ]
+    exclude: [ "./ui/test", "./ui/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
-      - sudo docker-compose build
-      - sudo docker-compose up -d
+      - sudo docker-compose build ui
+      - sudo docker-compose up ui -d
     when:
       branch: master
       event: [ push ]
