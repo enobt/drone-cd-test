@@ -8,7 +8,7 @@ pipeline:
     commands:
       - cd app
       - npm install
-      - npm start
+      - npm test
     when:
       branch: master
 
@@ -17,7 +17,7 @@ pipeline:
     commands:
       - cd ui
       - npm install
-      - npm start
+      - npm test
     when:
       branch: master
 
