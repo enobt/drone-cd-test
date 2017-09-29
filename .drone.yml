@@ -26,7 +26,7 @@ pipeline:
     hosts: [ "52.168.149.156" ] #change hosts
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
-    target: /var/www/node-app
+    target: /var/www/api
     include: [ "./api/bin", "./api/package.json", "./api/public", "./api/routes", "./api/views", "./api/package.json" ]
     exclude: [ "./api/test", "./api/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
@@ -43,7 +43,7 @@ pipeline:
     hosts: [ "52.168.146.227" ]
     user: "rvansant"
     secrets: [ RSYNC_KEY ]
-    target: /var/www/node-app
+    target: /var/www/ui
     include: [ "./ui/src", "./ui/package.json", "./ui/public" ]
     exclude: [ "./ui/test", "./ui/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
