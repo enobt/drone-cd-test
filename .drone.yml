@@ -32,7 +32,7 @@ pipeline:
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
       - cd /var/www/node-app
-      - sudo docker-compose build api
+      - sudo docker-compose build api mongo
       - sudo docker-compose up api -d
     when:
       branch: master
