@@ -31,7 +31,7 @@ pipeline:
     exclude: [ "./api/test", "./api/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
-      - cd /var/www/node-app
+      - cd /var/www/api
       - sudo docker-compose build api mongo
       - sudo docker-compose up -d api 
     when:
@@ -48,7 +48,7 @@ pipeline:
     exclude: [ "./ui/test", "./ui/node_modules", ".*", ".drone.yml" ]
     args: "--timeout=2400 --ignore-errors --omit-dir-times"
     script:
-      - cd /var/www/node-app
+      - cd /var/www/ui
       - sudo docker-compose build ui
       - sudo docker-compose up -d ui
     when:
